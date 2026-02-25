@@ -20,6 +20,7 @@ import getVoiceActors from "../controllers/actors.controller.js";
 import getCharacter from "../controllers/characters.controller.js";
 import * as filterController from "../controllers/filter.controller.js";
 import getTopSearch from "../controllers/topsearch.controller.js";
+import * as liveTvChannelController from "../controllers/live-channels.controller.js"
 import * as subscriptionController from "../controllers/subscription.controller.js";
 
 export const createApiRoutes = (app, jsonResponse, jsonError) => {
@@ -61,6 +62,8 @@ export const createApiRoutes = (app, jsonResponse, jsonError) => {
     )
   );
 
+
+  createRoute("/api/live-channels", liveTvChannelController.getLiveTvChannels);
   createRoute("/api/top-ten", topTenController.getTopTen);
   createRoute("/api/info", animeInfoController.getAnimeInfo);
   createRoute("/api/episodes/:id", episodeListController.getEpisodes);
