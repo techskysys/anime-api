@@ -25,13 +25,29 @@ export async function extractServers(id) {
         serverName,
       });
     });
-     // Reorder: put "HD-2" first if it exists
+    
+    //  // Reorder: put "HD-2" first if it exists
+    // serverData = serverData.sort((a, b) => {
+    //   if (a.serverName === "HD-2") return -1; // a goes first
+    //   if (b.serverName === "HD-2") return 1;  // b goes first
+    //   return 0; // keep original order otherwise
+    // });
+    // serverData.reverse();
+    // console.log("Extracted Servers:", serverData);
+
+    // Reorder: put MegaCloud dub server (server_id: "1") first if it exists.
     serverData = serverData.sort((a, b) => {
-      if (a.serverName === "HD-2") return -1; // a goes first
-      if (b.serverName === "HD-2") return 1;  // b goes first
-      return 0; // keep original order otherwise
+      const aIsPreferred =
+        a.serverName === "MegaCloud" && a.type === "dub";
+      const bIsPreferred =
+        b.serverName === "MegaCloud" && b.type === "dub";
+
+      if (aIsPreferred && !bIsPreferred) return -1;
+      if (!aIsPreferred && bIsPreferred) return 1;
+      return 0;
     });
-    serverData.reverse();
+    console.log("Extracted Servers:", serverData);
+
 
     return serverData;
   } catch (error) {
