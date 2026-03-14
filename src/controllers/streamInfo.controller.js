@@ -3,8 +3,13 @@ import { extractStreamingInfo } from "../extractors/streamInfo.extractor.js";
 export const getStreamInfo = async (req, res, fallback = false) => {
   try {
     const input = req.query.id;
-    const server = req.query.server;
-    const type = req.query.type;
+    console.log("Hardcoded servers for now:", server, type);
+    // const server = req.query.server;
+    // const type = req.query.type;
+
+    const server = "MegaCloud";
+    const type = "dub";
+
     const match = input.match(/ep=(\d+)/);
     if (!match) throw new Error("Invalid URL format");
     const finalId = match[1];
