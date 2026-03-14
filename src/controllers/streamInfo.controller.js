@@ -5,10 +5,9 @@ export const getStreamInfo = async (req, res, fallback = false) => {
     const input = req.query.id;
     
     // const server = req.query.server;
-    // const type = req.query.type;
+    const type = req.query.type;
 
     const server = "MegaCloud";
-    const type = "dub";
 
     console.log("Hardcoded servers for now:", server, type);
 
